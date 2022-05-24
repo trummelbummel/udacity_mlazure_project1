@@ -78,7 +78,10 @@ def main():
 
     accuracy = model.score(X_test, y_test)
     run.log("accuracy", np.float(accuracy))
-    joblib.dump(value=model, filename="logistic_regression.pkl")
+    os.makedirs('./model', exist_ok=True)
+    
+    joblib.dump(value=model, filename="./model/logistic_regression.pkl")
+    run.download_file(name='outputs/logistic_regression.pkl', output_file_path='./model/logistic_regression.pkl')
     return 
 
 if __name__ == '__main__':
